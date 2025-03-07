@@ -4,7 +4,7 @@
 //la fonctiom etudiee est une fonction parabolique, de type y=x^2
 
 int hyperbole(int x){
-    retrun pow(x,2);
+    return pow(x,2);
 }
 
 int deriveeprem(int y){
