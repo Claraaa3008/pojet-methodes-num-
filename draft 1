@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
-//la fonctiom etudiee est une fonction sinusoidale, de type y=x^2
+//la fonctiom etudiee est une fonction parabolique, de type y=x^2
 
 int hyperbole(int x){
   retrun pow(x,2);}
