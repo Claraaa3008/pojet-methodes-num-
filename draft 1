@@ -4,15 +4,15 @@
 //la fonctiom etudiee est une fonction parabolique, de type y=x^2
 
 int hyperbole(int x){
-  retrun pow(x,2);}
+    retrun pow(x,2);}
 
 int deriveeprem(int y){
-  int yp;
-  return yp=2x;}
+    return 2x;
+}
 
 int deriveesec(int x){
-  int ypp;
-  return ypp=2;}
+    return 2;
+}
 
 void euler(int nt, double t[nt], double x0, double x[nt]){     //xi+1
     int i;
@@ -46,7 +46,7 @@ void euler_stylé(int nt, double t[nt], double** Xk){
     double* F;
     for(int i = 1; i<nt; i++){
         dt = t[i] - t[i-1];
-        F = F(Yk, i);
+        F = F(Xk, i);
         Xk[i] = malloc(sizeof(double)*2);
         Xk[i][0]= Xk[i-1][0] + dt*F[0];
         Xk[i][1] = Xk[i-1][1] + dt*F[1];
@@ -66,7 +66,7 @@ int main(){
     Xk[0] = malloc(sizeof(double)*2);
     Xk[0][0] = 0;
     Xk[0][1] = 5;
-    euler_stylé(N, t, Yk);
+    euler_stylé(N, t, Xk);
     FILE* stream = fopen("Montagnes.txt", "a");
     for(int i=0; i<N; i++){
         fprintf(stream, "%.12f\t%.12f\t%.12f\t%.12f\n", t[i], yt[i], Yk[i][0], Yk[i][1]);
