@@ -44,10 +44,10 @@ void euler_stylé(int nt, double t[nt], double** Xk){
 }
 
 int main(){
-    const int N = 2000;
+    const int N = 20000;
     double t[N];
     t[0] = 0;
-    double pas = (100)/(N-1 + 0.0); //!\ WIP
+    double pas = (10)/(N-1 + 0.0); //!\ WIP
     for(int i = 1; i<N; i++){
         t[i] = t[i-1] + pas;
     }
