@@ -34,15 +34,22 @@ void euler(int nt, double t[nt], double y0, double y[nt]){  //x'i+1
     }
 }
 
+double* F(double** Xk, int i){
+    double* F = malloc(2*sizeof(double));
+    *F = Xk[i-1][1];
+    *(F+1) = -1*Xk[i-1][0];
+    return F;
+}
+
 void euler_stylé(int nt, double t[nt], double** Xk){
     double dt;
     double* F;
     for(int i = 1; i<nt; i++){
         dt = t[i] - t[i-1];
-        F = F2(Yk, i);
-        Yk[i] = malloc(sizeof(double)*2);
-        Yk[i][0]= Yk[i-1][0] + dt*F[0];
-        Yk[i][1] = Yk[i-1][1] + dt*F[1];
+        F = F(Yk, i);
+        Xk[i] = malloc(sizeof(double)*2);
+        Xk[i][0]= Xk[i-1][0] + dt*F[0];
+        Xk[i][1] = Xk[i-1][1] + dt*F[1];
         free(F);
     }
 }
@@ -58,16 +65,15 @@ int main(){
     double** Xk = malloc(sizeof(double*)*N);
     Xk[0] = malloc(sizeof(double)*2);
     Xk[0][0] = 0;
-    Xk[0][1] = 1;
+    Xk[0][1] = 5;
     euler_stylé(N, t, Yk);
     FILE* stream = fopen("Montagnes.txt", "a");
     for(int i=0; i<N; i++){
         fprintf(stream, "%.12f\t%.12f\t%.12f\t%.12f\n", t[i], yt[i], Yk[i][0], Yk[i][1]);
         free(Yk[i]);
     }
-    free(Yk);
+    free(Xk);
     fclose(stream);
-
 }
 
 
