@@ -60,11 +60,8 @@ int main(){
     Xk[0][0] = 0;
     Xk[0][1] = 1;
     euler_stylé(N, t, Yk);
-    //RK4(N, t, 1, yrk4);
-    //printf("L'erreur à t=5 est de %.12f\n", yt[N-1] - Yk[N-1][0]);
-    FILE* stream = fopen("EQUA3.txt", "a");
+    FILE* stream = fopen("Montagnes.txt", "a");
     for(int i=0; i<N; i++){
-        //free ici
         fprintf(stream, "%.12f\t%.12f\t%.12f\t%.12f\n", t[i], yt[i], Yk[i][0], Yk[i][1]);
         free(Yk[i]);
     }
