@@ -1,3 +1,44 @@
 #include<stdio.h>
 #include<math.h>
 #include<stdlib.h>
+//la fonctiom etudiee est une fonction sinusoidale, de type y=x^2
+
+int hyperbole(int x){
+  retrun pow(x,2);}
+
+int deriveeprem(int y){
+  int yp;
+  return yp=2x;}
+
+int deriveesec(int x){
+  int ypp;
+  return ypp=2;}
+
+void euler(int nt, double t[nt], double x0, double x[nt]){     //xi+1
+    int i;
+    double dt;
+    double y[0] = 0;
+    for(i=0;i<nt-1;i++){
+        dt = t[i+1]-t[i];
+        x[i+1] = x[i] + dt*f(x[i],t[i]);
+    }
+}
+
+void euler(int nt, double t[nt], double y0, double y[nt]){  //x'i+1
+    int i;
+    double dt;
+    y[0] = y0;
+    for(i=0;i<nt-1;i++){
+        dt = t[i+1]-t[i];
+        yp[i+1] = yp[i] + dt*f(y[i],t[i]);
+    }
+}
+
+int main(){
+
+double F[] = { , };
+double Xi[]={, };
+
+}
+
+
