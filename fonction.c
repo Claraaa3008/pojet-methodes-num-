@@ -4,7 +4,7 @@ double igrec(double x){
     return pow(x,2);
 }
 
-double prime(double x){
+double prime(double x, double t){
     return 2*x;
 }
 
