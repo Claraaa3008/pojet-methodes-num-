@@ -1,6 +1,12 @@
 #ifndef RK4_H
 #define RK4_h
 
-void RK4(int nt, double t[nt], double y0, double y[nt]);
+#include <stdarg.h>
+#include <stdlib.h>
+
+void RK4(int nt, double t[nt], double** Xk, double y[nt]);
+double* buffering(double* buffer, double* Xk, double* Ki, double Q, int i);
+double* dé_thé(double dt, double* K);
+void free_me(int n, ...);
 
 #endif
