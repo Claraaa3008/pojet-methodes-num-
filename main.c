@@ -8,7 +8,7 @@
 #include "RK4.h"
 
 int main(int argc, char** argv){
-    const int N = 2000;
+    const int N = 20000;
     double t[N];
     t[0] = 0;
     double pas = (10)/(N-1 + 0.0); //!\ WIP
@@ -16,25 +16,25 @@ int main(int argc, char** argv){
         t[i] = t[i-1] + pas;
     }
     double** Xk = malloc(sizeof(double*)*N);
-    double y[N];
+    double y[N][2];
     Xk[0] = malloc(sizeof(double)*2);
     Xk[0][0] = 0;
     Xk[0][1] = 5;
+    y[0][0] = igrec(Xk[0][0]);
+    y[0][1] = prime(Xk[0][0]);
     FILE* stream;
-    if(strcmp(argv[argc], "euler")==0){
+    if(strcmp(argv[argc-1], "euler")==0){
         euler(N, t, Xk, y);
-        stream = fopen("Mtn_euler.txt", "a");
     }
-    else if(strcmp(argv[argc], "rk4")==0){
+    else if(strcmp(argv[argc-1], "rk4")==0){
         RK4(N, t, Xk, y);
-        stream = fopen("Mtn_rk4.txt", "a");
     }
     else{
-        euler(N, t, Xk, y);
-        stream = fopen("Mtn.txt", "a");
+        return;
     }
+    stream = fopen("Mtn.txt", "a");
     for(int i=0; i<N; i++){
-        fprintf(stream, "%.12f\t%.12f\t%.12f\n", t[i], Xk[i][0], Xk[i][1]);
+        fprintf(stream, "%.12f\t%.12f\t%.12f\t%.12f\t%.12f\n", t[i], Xk[i][0], Xk[i][1], y[i][0], y[i][1]);
         free(Xk[i]);
     }
     free(Xk);

@@ -1,6 +1,6 @@
 # Variables
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 OBJ = main.o euler.o RK4.o fonction.o
 EXEC = mtnrusse
 TXT = Mtn.txt Mtn_rk4.txt Mtn_euler.txt
@@ -10,7 +10,7 @@ all: $(EXEC)
 
 # Compilation de l'exécutable
 $(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC) -lm -g
+	$(CC) $(CFLAGS) $(OBJ) -o $(EXEC) -lm
 
 # Compilation des fichiers .c en .o
 main.o: main.c euler.h RK4.h fonction.h
