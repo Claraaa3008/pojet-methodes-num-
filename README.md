@@ -6,5 +6,4 @@ Pour compiler ce code, il suffit d'untiliser les commande de  make suivantes: (l
 Pour executer le code dans la console, il suffit d'utiliser ./mtnrusse (./"le nom du code)
 ecrire ./mtnrusse euler si vous voulez compilez votre code en utilisant uniquement la fonction euler 
 ecrire ./mtnrusse rk4 si vous voulez compilez votre code en utilisant uniquement la focntion RK4  
-il existe aussi des parametres comme 
-rk4/executables = focntion obtenue avec rk4 
+
