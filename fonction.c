@@ -30,8 +30,8 @@ double* Fonc(double* Xk){
 double* FoncFrott(double* Xk){
     double* F = malloc(2*sizeof(double));
     *F = Xk[1];
-    double x = Xk[0];
-    double Vx = Xk[1];
+    double x = Xkf[0];
+    double Vx = Xkf[1];
     double prim = prime(x);
     double sec = seconde(x);
     *(F+1) = -prim -k/(1+prim*prim)*(g + sec*Vx*Vx);
