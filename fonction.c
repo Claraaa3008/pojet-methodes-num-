@@ -4,16 +4,16 @@ double g = 9.81; //accéleration de la pensanteur
 double k = 0.57; //coeff de frottement cinétique
 
 double igrec(double x){
-    return pow(x,2);
+    return sin(x);
 }
 
 double prime(double x){
-    return 2*x;
+    return cos(x);
 }
 
 double seconde(double x){
-    x += 1; //pour tromper -Werror
-    return 2;
+    //x +=1; //pour tromper -Werror
+    return -sin(x);
 }
 
 double* Fonc(double* Xk){

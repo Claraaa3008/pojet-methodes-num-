@@ -30,7 +30,7 @@ int main(int argc, char** argv){
         RK4(N, t, Xk, y);
     }
     else{
-        return;
+        return 0;
     }
     stream = fopen("Mtn.txt", "a");
     for(int i=0; i<N; i++){
@@ -39,6 +39,7 @@ int main(int argc, char** argv){
     }
     free(Xk);
     fclose(stream);
+    return 1;
 }
 
 
