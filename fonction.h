@@ -4,12 +4,14 @@
 #include <math.h>
 #include <stdlib.h>
 
+extern double g;
+
 double igrec(double x);
 
 double prime(double x);
 
 double seconde(double x);
 
-double* Fonc(double* Xk);
+double* Fonc(double* Xk, double);
 
 #endif
