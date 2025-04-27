@@ -14,7 +14,7 @@ int main(int argc, char** argv){
     double k;
     double t[N];
     t[0] = 0;
-    double pas = (10)/(N-1 + 0.0); //!\ WIP
+    double pas = (1)/(N-1 + 0.0); //!\ WIP
     for(int i = 1; i<N; i++){
         t[i] = t[i-1] + pas;
     }

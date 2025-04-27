@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 OBJ = main.o euler.o RK4.o fonction.o
-EXEC = mtnrusse
+EXEC = simulation
 TXT = Mtn.txt Mtn_rk4.txt Mtn_euler.txt
 
 # Règle principale
