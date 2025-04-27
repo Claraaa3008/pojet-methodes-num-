@@ -15,7 +15,7 @@ int main(int argc, char** argv){
     int lock = -1;
     double t[N];
     t[0] = 0;
-    double pas = (1)/(N-1 + 0.0); //!\ WIP
+    double pas = (10)/(N-1 + 0.0); //!\ WIP
     for(int i = 1; i<N; i++){
         t[i] = t[i-1] + pas;
     }
@@ -48,7 +48,7 @@ int main(int argc, char** argv){
     double Fs_m[N];
     Xk[0] = malloc(sizeof(double)*2);
     Xk[0][0] = 0;
-    Xk[0][1] = 5;
+    Xk[0][1] = 10;
     Yk[0] = malloc(sizeof(double)*2);
     Yk[0][0] = igrec(Xk[0][0]); //y[0][0] = igrec(Xk[0][0]);
     Yk[0][1] = prime(Xk[0][0]); //y[0][1] = prime(Xk[0][0]);
