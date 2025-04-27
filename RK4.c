@@ -24,23 +24,29 @@ void free_me(int n, ...){
     va_end(Ki);
 }
 
-void RK4(int nt, double t[nt], double** Xk, double y[nt][2], double k, double Fs_m[nt]){
+void RK4(int nt, double t[nt], double** Xk, double** Yk, double k, double Fs_m[nt], int lock){
     double dt /*, td*/;
     double* K1,* K2,* K3,* K4;
     double* buffer = malloc(sizeof(double)*2);
     for(int i = 1; i<nt; i++){
         dt = t[i] - t[i-1];
         //td = (t[i] + t[i-1])/2.0;
-        K1 = dé_thé(dt, Fonc(Xk[i-1], k));
-        K2 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K1, 2.0), k));
-        K3 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K2, 2.0), k));
-        K4 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K3, 1.0), k));
+        //Fonc(double* Xk, double* Yk, double k, double Fs_m, int axe, int lock);
+        K1 = dé_thé(dt, Fonc(Xk[i-1], Yk[i-1], k, Fs_m[i-1], 1, lock));
+        K2 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K1, 2.0), Yk[i-1], k, Fs_m[i-1], 1, lock));
+        K3 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K2, 2.0), Yk[i-1], k, Fs_m[i-1], 1, lock));
+        K4 = dé_thé(dt, Fonc(buffering(buffer, Xk[i-1], K3, 1.0), Yk[i-1], k, Fs_m[i-1], 1, lock));
         Xk[i] = malloc(sizeof(double)*2);
         Xk[i][0] = Xk[i-1][0] + (K1[0]+2*K2[0]+2*K3[0]+K4[0])/6; //x(t)
         Xk[i][1] = Xk[i-1][1] + (K1[1]+2*K2[1]+2*K3[1]+K4[1])/6; //x'(t)
-        y[i][0] = igrec(Xk[i][0]);//y(x)
-        y[i][1] = prime(Xk[i][0]);//y'(x)
-        Fs_m[i] = (Xk[i][1]*Xk[i][1]*seconde(Xk[i][0]) + g)/sqrt(1+y[i][1]*y[i][1]);
+        K1 = dé_thé(dt, Fonc(Xk[i-1], Yk[i-1], k, Fs_m[i-1], 0, lock));
+        K2 = dé_thé(dt, Fonc(Xk[i-1], buffering(buffer, Yk[i-1], K1, 2.0), k, Fs_m[i-1], 0, lock));
+        K3 = dé_thé(dt, Fonc(Xk[i-1], buffering(buffer, Yk[i-1], K2, 2.0), k, Fs_m[i-1], 0, lock));
+        K4 = dé_thé(dt, Fonc(Xk[i-1], buffering(buffer, Yk[i-1], K3, 1.0), k, Fs_m[i-1], 0, lock));
+        Yk[i] = malloc(sizeof(double)*2);
+        Yk[i][0] = Yk[i-1][0] + (K1[0]+2*K2[0]+2*K3[0]+K4[0])/6; //y(x)
+        Yk[i][1] = Yk[i-1][1] + (K1[1]+2*K2[1]+2*K3[1]+K4[1])/6; //y'(x)
+        Fs_m[i] = (Xk[i][1]*Xk[i][1]*seconde(Xk[i][0]) + g)/sqrt(1+Yk[i][1]*Yk[i][1]);
         free_me(4, K1, K2, K3, K4);
     }
     free(buffer);

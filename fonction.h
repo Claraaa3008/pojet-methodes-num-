@@ -12,6 +12,6 @@ double prime(double x);
 
 double seconde(double x);
 
-double* Fonc(double* Xk, double);
+double* Fonc(double* Xk, double* Yk, double k, double Fs_m, int axe_x, int lock);
 
 #endif
